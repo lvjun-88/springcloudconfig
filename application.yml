@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+spring:
+  profiles: dev       # 开发环境
+  application:
+    name: microservice-config-noodles-dev
+---
+spring:
+  profiles: test      # 测试环境
+  application:
+    name: microservice-config-noodles-test
+
+zuul:
+  prefix: /hand
+  ignored-services: "*"   #若是单个服务则为该服务的名称microservice-dept 若是多个服务则为 *
+  routes:
+    mydept.serviceId: microservice-dept
+    mydept.path: /mydept/**
+
